@@ -1,0 +1,62 @@
+.message-form-shape {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 20px;
+
+}
+
+.message-form {
+    position: block;
+    display: flex;
+    max-width: 800px;
+    width: 100%;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.message-input {
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    width: 100%;
+}
+
+.message-send-button {
+    background-color: var(--color-1);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.space {
+    height: 100px;
+}
+
+.message-input-shape {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+
+
+}
+
+
+.insert-button-shape {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+
+}
