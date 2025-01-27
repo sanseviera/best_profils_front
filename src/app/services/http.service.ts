@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Message } from '../models/Message';
 import { HttpClient, HttpEventType, HttpHeaders } from '@angular/common/http';
+import { timestamp } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { HttpClient, HttpEventType, HttpHeaders } from '@angular/common/http';
 export class HttpService {
 
   listMessage: Message[] = []
+  currentSession: String = timestamp.toString()
 
   constructor(private http: HttpClient) {
   }
@@ -19,7 +21,7 @@ export class HttpService {
   addMessageIA(message: string): void {
     this.listMessage.push(new Message("", false, true))
 
-    const myData = { 'message': message, 'session_id': 'string' };
+    const myData = { 'message': message, 'session_id': this.currentSession };
     let lastMessage: Message;
 
     this.http.post('http://127.0.0.1:8000/chat/chat/rag', myData, {
@@ -56,12 +58,56 @@ export class HttpService {
       observe: 'events',
     }).subscribe(event => {
     });
-
+  }
+  getSessions(): Promise<string[]> {
+    return new Promise((resolve, reject) => {
+      this.http.get<string[]>('http://127.0.0.1:8000/chat/chat/sessions', {
+        reportProgress: true,
+        observe: 'events',
+      }).subscribe({
+        next: (event) => {
+          if (event.type === HttpEventType.Response) {
+            resolve(event.body as string[]);
+          }
+        },
+        error: (err) => {
+          reject(err);
+        }
+      });
+    });
   }
 
   getMessages(): Message[] {
     return this.listMessage
   }
 
+  changeSession(session: String): void {
+    this.currentSession = session
+
+    this.http.get<any[]>(`http://127.0.0.1:8000/chat/history/${session}`, {
+      reportProgress: true,
+      observe: 'events',
+    }).subscribe({
+      next: (event) => {
+        // Vérifie si l'événement est une réponse HTTP avec un corps valide
+        if (event.type === HttpEventType.Response && Array.isArray(event.body)) {
+          console.log(event.body[0]); // Debug : afficher le premier élément de la réponse
+
+          // Réinitialiser la liste des messages
+          this.listMessage = event.body.map(item => new Message(
+            item.content,
+            item.role === 'user' ? true : false,
+            false,
+          ));
+        }
+      },
+      error: (err) => {
+        console.error('Erreur lors de la récupération des messages :', err);
+      },
+      complete: () => {
+        console.log('Requête terminée');
+      }
+    });
+  }
 
 }
