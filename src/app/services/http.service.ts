@@ -21,6 +21,7 @@ export class HttpService {
   addMessageIA(message: string): void {
     this.listMessage.push(new Message("", false, true))
 
+
     const myData = { 'message': message, 'session_id': this.currentSession };
     let lastMessage: Message;
 

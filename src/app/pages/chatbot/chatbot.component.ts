@@ -69,14 +69,16 @@ export class ChatbotComponent {
   async onSubmit(form: any): Promise<void> {
     if (this.formContent.trim() != '') {
       this.httpService.addMessageCustomer(this.formContent);
-      this.httpService.getMessages();
+      this.messages = this.httpService.getMessages();
       // display the messages a animated way
 
       this.httpService.addMessageIA(this.formContent);
 
-      this.httpService.getMessages();
+      this.messages = this.httpService.getMessages();
       this.scrollToBottom();
       this.formContent = '';
+
+
     }
   }
 
