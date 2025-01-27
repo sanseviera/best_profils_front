@@ -49,7 +49,7 @@ export class HttpService {
   addFile(contentFile: string) {
     const myData =
     {
-      "texts": [
+      "files": [
         contentFile
       ],
       "clear_existing": false
