@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common'; // Import de CommonModule
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-chatbot-message',
-  standalone: true,  // Composant autonome
-  imports: [CommonModule, HttpClientModule],  // Importation de CommonModule
-  templateUrl: './chatbot-message.component.html',
-  styleUrls: ['./chatbot-message.component.scss']
+    selector: 'app-chatbot-message', // Composant autonome
+    imports: [CommonModule, HttpClientModule], // Importation de CommonModule
+    templateUrl: './chatbot-message.component.html',
+    styleUrls: ['./chatbot-message.component.scss']
 })
 export class ChatbotMessageComponent {
   @Input() message: string = ''; // Valeur par défaut vide

@@ -9,14 +9,12 @@ import { CommonModule } from '@angular/common';
 import { query } from '@angular/animations';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, MatButtonModule, MatDividerModule, MatIconModule, MatToolbarModule, MatSidenavModule, RouterOutlet,
-    RouterLink, RouterLinkActive
-
-  ], // Add MatSidenavModule to imports
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [CommonModule, MatButtonModule, MatDividerModule, MatIconModule, MatToolbarModule, MatSidenavModule, RouterOutlet,
+        RouterLink, RouterLinkActive
+    ], // Add MatSidenavModule to imports
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   showButtonToolbar: boolean = false;

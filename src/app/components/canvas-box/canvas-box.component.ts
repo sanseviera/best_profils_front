@@ -3,11 +3,10 @@ import { Component } from '@angular/core';
 import * as THREE from 'three';
 
 @Component({
-  selector: 'app-canvas-box',
-  standalone: true,
-  imports: [HttpClientModule],
-  templateUrl: './canvas-box.component.html',
-  styleUrls: ['./canvas-box.component.scss']
+    selector: 'app-canvas-box',
+    imports: [HttpClientModule],
+    templateUrl: './canvas-box.component.html',
+    styleUrls: ['./canvas-box.component.scss']
 })
 export class CanvasBoxComponent {
 

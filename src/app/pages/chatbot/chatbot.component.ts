@@ -8,21 +8,17 @@ import { Message } from '../../models/Message';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 
 @Component({
-  selector: 'app-chatbot',
-  standalone: true,
-  imports: [
-    ChatbotMessageComponent,
-    CommonModule,
-    MatButtonModule,
-    MatIconModule,
-    FormsModule,
-
-
-
-  ],
-  providers: [HttpService],
-  templateUrl: './chatbot.component.html',
-  styleUrls: ['./chatbot.component.scss']
+    selector: 'app-chatbot',
+    imports: [
+        ChatbotMessageComponent,
+        CommonModule,
+        MatButtonModule,
+        MatIconModule,
+        FormsModule,
+    ],
+    providers: [HttpService],
+    templateUrl: './chatbot.component.html',
+    styleUrls: ['./chatbot.component.scss']
 })
 export class ChatbotComponent {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
